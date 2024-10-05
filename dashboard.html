@@ -16,9 +16,9 @@
             const password = localStorage.getItem("password");
 
             if (isLoggedIn === "true") {
-                document.getElementById("output").innerHTML = `Sikeres bejelentkezés!<br>Email: ${email}<br>Jelszó: ${password}`;
+                document.getElementById("output").innerHTML = `<br>Email: ${email}<br>Jelszó: ${password}`;
             } else {
-                document.getElementById("output").innerHTML = `Sikertelen bejelentkezés.<br>Email: ${email}<br>Jelszó: ${password}`;
+                document.getElementById("output").innerHTML = `.<br>Email: ${email}<br>Jelszó: ${password}`;
             }
         }
 
