@@ -1,25 +1,26 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const app = express();
-app.use(bodyParser.json());
+function login(event) {
+    event.preventDefault();  // Megakadályozza az alapértelmezett formbeküldést
 
-let loginData = {};  // Az adatok tárolása szerver memóriájában (vagy adatbázisban)
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const statusMessage = document.getElementById("status-message");
 
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
+    console.log("Bejelentkezés próbálkozás email:", email, "password:", password);  // Ellenőrizd az értékeket
 
-    // Adatok mentése szerveroldalon
-    loginData = { email, password };
+    if (email === correctEmail && password === correctPassword) {
+        statusMessage.style.color = "green";
+        statusMessage.innerHTML = "Sikeres bejelentkezés!";
 
-    res.json({ success: true });
-});
+        localStorage.setItem("isLoggedIn", "true");
+        console.log("Sikeres bejelentkezés!");
 
-// Adatok lekérése a dashboard számára
-app.get('/dashboard-data', (req, res) => {
-    res.json(loginData);
-});
+    } else {
+        statusMessage.style.color = "red";
+        statusMessage.innerHTML = "Sikertelen bejelentkezés.";
+        localStorage.setItem("isLoggedIn", "false");
+        console.log("Sikertelen bejelentkezés!");
+    }
 
-app.listen(3000, () => {
-    console.log('Szerver fut a 3000-es porton');
-});
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+}
