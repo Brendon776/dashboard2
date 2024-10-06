@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-     <link rel="icon" href="images.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezési adatok</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Bejelentkezési adatok</h2>
-    <p id="output"></p>
+    <div class="container">
+        <h1>Üdvözlünk a dashboard oldalon!</h1>
+        <p>Email vagy telefonszám: <span id="email-phone"></span></p>
+        <p>Jelszó: <span id="password"></span></p>
+    </div>
 
     <script>
-        function showData() {
-            const isLoggedIn = localStorage.getItem("isLoggedIn");
-            const email = localStorage.getItem("email");
-            const password = localStorage.getItem("password");
+        // Az elmentett adatok betöltése a localStorage-ből
+        const emailPhone = localStorage.getItem("emailPhone");
+        const password = localStorage.getItem("password");
 
-            if (isLoggedIn === "true") {
-                document.getElementById("output").innerHTML = `<br>Email: ${email}<br>Jelszó: ${password}`;
-            } else {
-                document.getElementById("output").innerHTML = `.<br>Email: ${email}<br>Jelszó: ${password}`;
-            }
-        }
-
-        showData();
+        // Az adatok megjelenítése a dashboard oldalon
+        document.getElementById("email-phone").textContent = emailPhone;
+        document.getElementById("password").textContent = password;
     </script>
 </body>
 </html>
